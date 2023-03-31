@@ -5,5 +5,5 @@ with this responsive mini app you can add task to list and when you do that dele
 
 II. File list
 ------------
-#index.html = css , html , bootstrap , 
+#index.html = css , html , bootstrap code , 
 #app.js = javascript code
