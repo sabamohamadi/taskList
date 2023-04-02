@@ -24,12 +24,8 @@ function loadEventListener() {
 
 // get Tasks
 function getTasks(e) {
-  let tasks;
-  if (localStorage.getItem("tasks") === null) {
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-  }
+  let tasks = localStorage.getItem("tasks") ? JSON.parse(tasks) : [];
+
   tasks.forEach(function (task) {
     createTaskElement(task)
   });
@@ -50,7 +46,7 @@ function addTask(e) {
 
 function createTaskElement(task) {
     const li = document.createElement("li");
-    li.className = "collection-item";
+    li.className = "collection-item"; 
     li.appendChild(document.createTextNode(task));
 
     const link = document.createElement("a");
@@ -59,16 +55,12 @@ function createTaskElement(task) {
 
     li.appendChild(link);
     collection.appendChild(li);
-  }
+}
 
 // store in LS
 function storeTaskInLocalStorage(value) {
-  let tasks;
-  if (localStorage.getItem("tasks") === null) {
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-  }
+  let tasks = localStorage.getItem("tasks") ? JSON.parse(tasks) : [];
+
   tasks.push(value);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -84,12 +76,8 @@ function removeTaks(e) {
 // remove from LS
 function removeFromLocalStorage(value) {
   const removeVal = value.textContent;
-  let tasks;
-  if (localStorage.getItem("tasks") === null) {
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-  }
+  let tasks = localStorage.getItem("tasks") ? JSON.parse(tasks) : [];
+
   tasks.forEach(function (task, index) {
     if (task === removeVal) {
       tasks.splice(index, 1);
