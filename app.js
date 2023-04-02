@@ -31,22 +31,7 @@ function getTasks(e) {
     tasks = JSON.parse(localStorage.getItem("tasks"));
   }
   tasks.forEach(function (task) {
-    //create li
-    const li = document.createElement("li");
-    // add class
-    li.className = "collection-item";
-    // text node
-    li.appendChild(document.createTextNode(task));
-    // create a link
-    const link = document.createElement("a");
-    //add class
-    link.className = "delete-item secondary-content";
-    // add icon
-    link.innerHTML = '<i class ="fa fa-remove"></i>';
-    //append link to li
-    li.appendChild(link);
-    //append child li to ul
-    collection.appendChild(li);
+    createTaskElement(task)
   });
 }
 // declear add task function
@@ -54,22 +39,7 @@ function addTask(e) {
   if (inputTask.value === "") {
     alert("enter a task !!");
   } else {
-    //create li
-    const li = document.createElement("li");
-    // add class
-    li.className = "collection-item";
-    // text node
-    li.appendChild(document.createTextNode(inputTask.value));
-    // create a link
-    const link = document.createElement("a");
-    //add class
-    link.className = "delete-item secondary-content";
-    // add icon
-    link.innerHTML = '<i class ="fa fa-remove"></i>';
-    //append link to li
-    li.appendChild(link);
-    //append child li to ul
-    collection.appendChild(li);
+    createTaskElement(inputTask.value)
     // add to local storage
     storeTaskInLocalStorage(inputTask.value);
     //clear input
@@ -77,6 +47,20 @@ function addTask(e) {
   }
   e.preventDefault();
 }
+
+function createTaskElement(task) {
+    const li = document.createElement("li");
+    li.className = "collection-item";
+    li.appendChild(document.createTextNode(task));
+
+    const link = document.createElement("a");
+    link.className = "delete-item secondary-content";
+    link.innerHTML = '<i class ="fa fa-remove"></i>';
+
+    li.appendChild(link);
+    collection.appendChild(li);
+  }
+
 // store in LS
 function storeTaskInLocalStorage(value) {
   let tasks;
